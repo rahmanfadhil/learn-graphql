@@ -7,9 +7,9 @@ const {
 } = require('graphql')
 
 let books = [
-  { name: 'Learn Javascript', genre: 'tutorial', id: '1' },
-  { name: 'Learn React', genre: 'tutorial', id: '2' },
-  { name: 'Harry Potter', genre: 'fantasy', id: '3' }
+  { name: 'Learn Javascript', genre: 'tutorial', id: '1', authorId: '1' },
+  { name: 'Learn React', genre: 'tutorial', id: '2', authorId: '2' },
+  { name: 'Harry Potter', genre: 'fantasy', id: '3', authorId: '3' }
 ]
 
 let authors = [
@@ -23,7 +23,14 @@ const BookType = new GraphQLObjectType({
   fields: () => ({
     name: { type: GraphQLString },
     genre: { type: GraphQLString },
-    id: { type: GraphQLID }
+    id: { type: GraphQLID },
+    author: {
+      type: AuthorType,
+      resolve(parent, args) {
+        console.log(parent)
+        return authors.find(i => i.id === parent.authorId)
+      }
+    }
   })
 })
 
