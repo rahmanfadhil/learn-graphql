@@ -1,6 +1,7 @@
 import {
   GraphQLObjectType,
-  GraphQLString
+  GraphQLString,
+  GraphQLSchema
 } from 'graphql'
 
 const BookType = new GraphQLObjectType({
@@ -24,3 +25,5 @@ const RootQuery = new GraphQLObjectType({
     }
   }
 })
+
+export default new GraphQLSchema({ query: RootQuery })
