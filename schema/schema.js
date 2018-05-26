@@ -29,7 +29,7 @@ const RootQuery = new GraphQLObjectType({
       args: { id: { type: GraphQLString } },
       resolve(parent, args) {
         // Get data from db
-        books.find((item) => item.id === '1')
+        return books.find((item) => item.id === '1')
       }
     }
   }
